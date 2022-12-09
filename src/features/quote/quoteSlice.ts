@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { AppDispatch, RootState } from "../../app/store";
 import { ESTADO_FETCH } from "./constants";
-import { obtenerCita } from "./citaAPI";
+import { obtenerCita } from "./quoteAPI";
 import { ICita } from "./types";
 
 export interface EstadoCita {
@@ -17,9 +17,9 @@ const initialState: EstadoCita = {
 export const obtenerCitaAsync = createAsyncThunk(
   "cita/obtenerCita",
   async (personaje: string) => {
+    // eslint-disable-next-line no-useless-catch
     try {
       const cita = await obtenerCita(personaje);
-
       return cita;
     } catch (err) {
       throw err;
